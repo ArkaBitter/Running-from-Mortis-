@@ -318,9 +318,9 @@ class BootScene extends Phaser.Scene {
         this.load.image('riverzong', './assets/关卡1/河流竖.png');
         this.load.image('maybach', './assets/关卡1/迈巴赫侧视.png');
         this.load.image('qiaodong', './assets/关卡1/桥洞.png');
-        this.load.image('芭菲车', './assets/关卡2/tile/芭菲车抠图.png');
-        this.load.image('睦头床', './assets/关卡2/tile/床抠图暗红.png');
-        this.load.image('沙发', './assets/关卡2/tile/二次元沙发抠图.png');
+        this.load.image('芭菲车', './assets/关卡2/芭菲车抠图.png');
+        this.load.image('睦头床', './assets/关卡2/床抠图暗红.png');
+        this.load.image('沙发', './assets/关卡2/二次元沙发抠图.png');
         this.load.image('俯视迈巴赫', './assets/关卡2/迈巴赫俯视图抠图.png');
         this.load.image('莫提斯玩偶', './assets/关卡2/莫提斯.png');
         this.load.image('莫提斯玩偶笑', './assets/关卡2/莫提斯笑.png');
