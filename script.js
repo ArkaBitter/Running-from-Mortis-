@@ -4308,7 +4308,7 @@ class MainScene extends Phaser.Scene {
                         title: '基本操作',
                         content: '通过↑↓←→控制丰川祥子' + '\u00A0'.repeat(10) + '的方向，每回合移动一次，空格可以在原地等待一次。',
                         images: [
-                            { name: '丰川祥子Normal', x: -237, y: 40 }
+                            { name: '丰川祥子Normal', x: -231, y: 40 }
                         ]
                     },
                     {
