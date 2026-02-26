@@ -2991,7 +2991,7 @@ class GameScene extends Phaser.Scene {
             
             // 捡到假面后，分数增加当前拥有的黄瓜数量
             const cucumberCount = this.col_cucumbers || 0;
-            if (cucumberCount > 0) {
+            if (cucumberCount > 0 && this.level === 3 && this.allowAccessToTheNextLevel = true) {
                 this.score += cucumberCount;
                 this.addEvent(`捡到${cucumberCount}根黄瓜，+${cucumberCount}分！`);
             }
