@@ -49,7 +49,7 @@
             this.carCanvas.style.top = '0px';
         }
         
-        this.carCanvas.style.zIndex = '25';
+        this.carCanvas.style.zIndex = '20';
         this.carCanvas.style.pointerEvents = 'none';
 
 
@@ -442,4 +442,5 @@
         this.keyboardLocked = false;
         
         console.log('车辆动画资源已清理');
+
     }
