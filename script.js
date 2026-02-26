@@ -3668,11 +3668,11 @@ class GameScene extends Phaser.Scene {
         }
         
         // 测试用：按L键设置全场地块明亮，按K键恢复正常光照
-        if (Phaser.Input.Keyboard.JustDown(this.keyL)) {
-            this.setAllTilesBright(true);
-        } else if (Phaser.Input.Keyboard.JustDown(this.keyK)) {
-            this.setAllTilesBright(false);
-        }
+        // if (Phaser.Input.Keyboard.JustDown(this.keyL)) {
+        //    this.setAllTilesBright(true);
+        // } else if (Phaser.Input.Keyboard.JustDown(this.keyK)) {
+        //     this.setAllTilesBright(false);
+        // }
         
         
         
