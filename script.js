@@ -5079,10 +5079,11 @@ class MainScene extends Phaser.Scene {
                 { id: 4, name: '小有名气', description: '评价达到C', hidden: false },
                 { id: 5, name: '上头条！', description: '评价达到B', hidden: false },
                 { id: 6, name: '直通武道馆！！', description: '评价达到A', hidden: false },
-                { id: 7, name: '乐队传奇！！！', description: '评价达到S及以上', hidden: false },
-                { id: 8, name: 'Mygo_Avemujica', description: '点亮所有图鉴（除了甜甜圈）', hidden: false },
+                { id: 7, name: '乐队传奇！！！', description: '评价达到S', hidden: false },
+                { id: 8, name: 'Mygo_Avemujica', description: '评分达到S以上', hidden: false },
                 { id: 9, name: '我要成为卡密', description: '开启白月光形态', hidden: true },
-                { id: 10, name: 'sumimi是不会解散的！', description: '获得道具甜甜圈', hidden: true }
+                { id: 10, name: 'sumimi是不会解散的！', description: '获得道具甜甜圈', hidden: true },
+                { id: 11, name: '收集大师', description: '点亮所有图鉴', hidden: false }
             ];
             
             // 当前页码
@@ -5162,7 +5163,7 @@ class MainScene extends Phaser.Scene {
             let currentAchievementItems = createAchievements.call(this, currentPage);
             
             // 添加页码显示
-            const pageText = this.add.text(achievementBackground.x, achievementBackground.y + 350, `第 ${currentPage} / 2 页`, {
+            const pageText = this.add.text(achievementBackground.x, achievementBackground.y + 350, `第 ${currentPage} / 3 页`, {
                 fontSize: '32px',
                 color: '#000',
                 fontFamily: 'Arial, sans-serif',
@@ -5201,7 +5202,7 @@ class MainScene extends Phaser.Scene {
                 
                 // 更新页码
                 currentPage = page;
-                pageText.setText(`第 ${currentPage} / 2 页`);
+                pageText.setText(`第 ${currentPage} / 3 页`);
                 
                 // 创建新页成就
                 currentAchievementItems = createAchievements.call(this, currentPage);
@@ -5216,7 +5217,7 @@ class MainScene extends Phaser.Scene {
             
             // 下一页按钮点击事件
             nextButton.on('pointerdown', () => {
-                if (currentPage < 2) {
+                if (currentPage < 3) {
                     changePage.call(this, currentPage + 1);
                 }
             });
