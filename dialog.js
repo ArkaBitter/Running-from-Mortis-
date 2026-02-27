@@ -427,6 +427,7 @@
                     this.col_cucumbers >= 1 || 
                     (this.currentNpc.name === '八幡海玲' && this.inventoryItemTypes && this.inventoryItemTypes['巧克力奶'] && this.inventoryItemTypes['巧克力奶'].count > 0) || 
                     (this.currentNpc.name === '若叶睦' && this.inventoryItemTypes && this.inventoryItemTypes['素世的香水'] && this.inventoryItemTypes['素世的香水'].count > 0) ||
+                    (this.currentNpc.name === '佑天寺若麦' && this.inventoryItemTypes && this.inventoryItemTypes['爱音的手机'] && this.inventoryItemTypes['爱音的手机'].count > 0) ||
                     (isWhiteMoonlightFormActive && isWhiteMoonlightNpc);
                 
                 if (hasRecruitCondition) {
@@ -1371,4 +1372,5 @@
 
             }
         });
+
     }
