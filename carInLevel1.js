@@ -53,7 +53,7 @@
         this.carCanvas.style.pointerEvents = 'none';
 
 
-        this.carCtx = this.carCanvas.getContext('2d');
+        this.carCtx = this.carCanvas.getContext('2d', { willReadFrequently: true });
 
         gameContainer.appendChild(this.carCanvas);
 
@@ -444,3 +444,4 @@
         console.log('车辆动画资源已清理');
 
     }
+
