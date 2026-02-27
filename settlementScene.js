@@ -172,12 +172,13 @@
         if (rating === 'S' || rating === 'AVEMUJICA') {
             achievements[7] = true; // 乐队传奇！！！（评价达到S及以上）
         }
+        if (rating === 'AVEMUJICA') achievements[8] = true; // Mygo_Avemujica  
         
         // 3. 图鉴点亮成就（除了甜甜圈）
         const collectedItems = JSON.parse(localStorage.getItem('gameCollectedItems') || '[]');
-        const requiredItems = ['cucumber', 'mask', '爱音的手机', '素世的香水', '巧克力奶', '天文望远镜', '抹茶巴菲', '迈巴赫钥匙', '空啤酒罐', '芭蕾舞鞋', 'Mygo联合演出邀请函', '神秘的玩偶'];
+        const requiredItems = ['cucumber', 'mask', '爱音的手机', '素世的香水', '巧克力奶', '天文望远镜', '抹茶巴菲', '迈巴赫钥匙', '空啤酒罐', '芭蕾舞鞋', 'Mygo联合演出邀请函', '神秘的玩偶', '甜甜圈'];
         const allRequiredCollected = requiredItems.every(item => collectedItems.includes(item));
-        if (allRequiredCollected) achievements[8] = true; // Mygo_Avemujica
+        if (allRequiredCollected) achievements[11] = true; // Mygo_Avemujica
         
         // 4. 白月光形态成就
         if (this.whiteMoonlightFormActive) achievements[9] = true; // 我要成为卡密
@@ -389,4 +390,5 @@
             ease: 'Back.easeOut',
             delay: 100
         });
+
     }
