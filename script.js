@@ -1703,6 +1703,41 @@ class GameScene extends Phaser.Scene {
                 // 如果移动失败（无法移动），也需要重置状态
                 this.turnInProgress = false;
             }
+        } else if (dx === 0 && dy === 0) {
+            // 点击了玩家所在的格子，执行等待操作
+            // 在操作开始前就设置回合开始，防止连续按键
+            this.turnInProgress = true;
+            
+            // 检查碰撞
+            this.checkPlayerCucumberCollision();
+            this.checkPlayerMaskCollision();
+            const npcCollided = this.checkPlayerNpcCollision();
+            const ghostCollided = this.checkGhostPlayerCollision();
+            
+            if (!ghostCollided && !npcCollided) {
+                // 玩家等待后，检查是否可以进行第二次移动
+                this.moveCount++;
+                
+                if ((this.canMoveTwice || this.permanentDoubleMove) && this.moveCount < 2) {
+                    // 如果可以进行第二次移动，重置回合进行状态，允许玩家再次输入
+                    this.turnInProgress = false;
+                } else {
+                    // 正常结束回合
+                    if (!this.permanentDoubleMove) {
+                        this.canMoveTwice = false; // 只有非永久双倍移动才重置标记
+                    }
+                    this.moveCount = 0; // 重置移动计数
+                    
+                    // 玩家等待后，让NPC队列跟随移动，NPC全部移动完成后再让鬼移动
+                    this.moveNPCsInQueue(() => {
+                        // NPC移动全部完成后，才开始鬼的移动
+                        this.endTurn();
+                    });
+                }
+            } else {
+                // 如果发生碰撞，确保回合状态重置
+                this.turnInProgress = false;
+            }
         }
     }
 
