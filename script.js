@@ -1621,7 +1621,89 @@ class GameScene extends Phaser.Scene {
         
         // 初始化物品栏
         this.initInventory();
+                
+        // 添加鼠标点击事件监听器
+        this.input.on('pointerdown', this.handleMouseClick, this);
+      
         console.log('UI systems initialized successfully');
+    }
+
+        // 处理鼠标点击移动
+    handleMouseClick(pointer) {
+        // 检查键盘是否被锁定（车辆动画进行中）
+        if (this.keyboardLocked || this.turnInProgress || this.dialogVisible) {
+            return;
+        }
+        
+        // 计算玩家当前所在的tile坐标
+        const playerTileX = Math.floor(this.player.x / this.tile_Width);
+        const playerTileY = Math.floor(this.player.y / this.tile_Height);
+        
+        // 将鼠标点击位置转换为tile坐标
+        const clickedTileX = Math.floor(pointer.worldX / this.tile_Width);
+        const clickedTileY = Math.floor(pointer.worldY / this.tile_Height);
+        
+        // 计算点击位置与玩家的相对位置
+        const dx = clickedTileX - playerTileX;
+        const dy = clickedTileY - playerTileY;
+        
+        // 检查是否是相邻的格子（只能是上下左右四个方向）
+        if ((Math.abs(dx) === 1 && dy === 0) || (dx === 0 && Math.abs(dy) === 1)) {
+            // 在移动前就设置回合开始，防止连续按键
+            this.turnInProgress = true;
+            
+            // 记录移动方向
+            if (dx === 1) {
+                this.lastDirection = 'right';
+                this.player.flipX = false;
+            } else if (dx === -1) {
+                this.lastDirection = 'left';
+                this.player.flipX = true;
+            } else if (dy === 1) {
+                this.lastDirection = 'down';
+            } else if (dy === -1) {
+                this.lastDirection = 'up';
+            }
+            
+            // 执行移动
+            if (this.moveEntity(this.player, dx, dy, () => {
+                // 检查碰撞
+                this.checkPlayerCucumberCollision();
+                this.checkPlayerMaskCollision();
+                const npcCollided = this.checkPlayerNpcCollision();
+                const ghostCollided = this.checkGhostPlayerCollision();
+                
+                if (!ghostCollided && !npcCollided) {
+                    // 玩家移动动画完成后，检查是否可以进行第二次移动
+                    this.moveCount++;
+                    
+                    if ((this.canMoveTwice || this.permanentDoubleMove) && this.moveCount < 2) {
+                        // 如果可以进行第二次移动，重置回合进行状态，允许玩家再次输入
+                        this.turnInProgress = false;
+                    } else {
+                        // 正常结束回合
+                        if (!this.permanentDoubleMove) {
+                            this.canMoveTwice = false; // 只有非永久双倍移动才重置标记
+                        }
+                        this.moveCount = 0; // 重置移动计数
+                        
+                        // 玩家移动动画完成后，让NPC队列跟随移动，NPC全部移动完成后再让鬼移动
+                        this.moveNPCsInQueue(() => {
+                            // NPC移动全部完成后，才开始鬼的移动
+                            this.endTurn();
+                        });
+                    }
+                } else {
+                    // 如果发生碰撞，确保回合状态重置
+                    this.turnInProgress = false;
+                }
+            })) {
+                // 移动成功
+            } else {
+                // 如果移动失败（无法移动），也需要重置状态
+                this.turnInProgress = false;
+            }
+        }
     }
 
     // ---------- 初始化 Canvas（确保父容器 position: relative） ----------
