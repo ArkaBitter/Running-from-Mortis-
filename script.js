@@ -2203,7 +2203,7 @@ class GameScene extends Phaser.Scene {
                     // 如果与贴图重叠
                     if (isOverlappingMaybach) {
                         // 如果是maybach或俯视迈巴赫贴图，需要持有迈巴赫钥匙
-                        canMove = hasMaybachKey;
+                        canMove = hasMaybachKey && isFengchuan;
                     } else {
                         // 如果是其他贴图，不能通行
                         canMove = false;
