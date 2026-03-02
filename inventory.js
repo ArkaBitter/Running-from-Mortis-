@@ -52,8 +52,8 @@
             Object.entries(this.inventoryItemTypes).forEach(([itemType, itemInfo], index) => {
                 if (itemInfo && itemInfo.count > 0) {
                     // 计算位置：第一类物品图标的位置位于x=1600, y=192，第n类物品的图标位于x=1600, y=64+128*n
-                    const itemX = 1600;
-                    const itemY = 64 + 128 * (index + 1);
+                    const itemX = index>7?1728:1600;
+                    const itemY = index>7?64 + 128 * (index-7):64 + 128 * (index+1);
                     
                     // 创建物品精灵，大小一律缩放为96*96
                     const item = this.add.sprite(itemX, itemY, itemType);
@@ -283,3 +283,4 @@
         }
 
     }
+
