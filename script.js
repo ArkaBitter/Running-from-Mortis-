@@ -2335,7 +2335,15 @@ class GameScene extends Phaser.Scene {
                     }
                 ]
             });
-            
+            if (isFengchuan && isMovingToSecretRoom) {
+                if (hasEmptyBeerCan) {
+                    // 持有空啤酒罐，认证通过
+                    this.addEvent('使用空啤酒罐通过了秘密房间的认证！');
+                } else {
+                    // 未持有空啤酒罐，无权限
+                    this.addEvent('秘密房间：无权限，需要丰川清告的指纹');
+                }
+            }
             return false;
         }
         
