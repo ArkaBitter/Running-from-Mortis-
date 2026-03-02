@@ -3207,7 +3207,7 @@ class GameScene extends Phaser.Scene {
         this.switchBackgroundMusic('imprisonedII');
         
         // 添加事件到事件日志
-        this.addEvent('集齐了神秘的玩偶、芭蕾舞鞋、素世的香水、巧克力奶、天文望远镜，丰川祥子进入了白月光形态！');
+        this.addEvent('集齐了神秘的玩偶、芭蕾舞鞋、素世的香水、巧克力奶、天文望远镜，丰川祥子进入了白月光形态，照亮了全场！');
         
         // 点亮白月光形态成就
         const achievements = JSON.parse(localStorage.getItem('gameAchievements') || '{}');
