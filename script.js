@@ -1092,7 +1092,9 @@ class GameScene extends Phaser.Scene {
 
         const playerPos = this.getRandomPosition(mapData, usedPositions);
         // 使用丰川祥子Normal作为玩家角色
-        this.player = this.physics.add.sprite(playerPos.x * this.tile_Width + this.tile_Width / 2, playerPos.y * this.tile_Height + this.tile_Height / 2, '丰川祥子Normal');
+        // 根据白月光形态选择玩家精灵
+        const playerTexture = this.whiteMoonlightFormActive ? '丰川祥子Smile' : '丰川祥子Normal';
+        this.player = this.physics.add.sprite(playerPos.x * this.tile_Width + this.tile_Width / 2, playerPos.y * this.tile_Height + this.tile_Height / 2, playerTexture);
         // 设置玩家大小为64x64像素
         this.player.setDisplaySize(64, 64);
         // 玩家默认朝向为右
@@ -1100,7 +1102,13 @@ class GameScene extends Phaser.Scene {
         this.player.collided = 0; // 添加collided属性，初始值为0
         this.team.push(this.player); // 玩家加入team
         usedPositions.push(playerPos);
-
+        
+        // 如果处于白月光形态，切换背景音乐
+        if (this.whiteMoonlightFormActive) {
+            console.log('白月光形态激活，切换背景音乐到ImprisonedII');
+            this.switchBackgroundMusic('imprisonedII');
+        }
+        
         const ghostPos = this.getRandomPosition(mapData, usedPositions);
         this.ghost = this.physics.add.sprite(ghostPos.x * this.tile_Width + this.tile_Width / 2, ghostPos.y * this.tile_Height + this.tile_Height / 2, 'Mortis');
         this.ghost.setDepth(19); // 设置深度高于黄瓜但低于NPC
