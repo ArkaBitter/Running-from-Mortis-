@@ -180,8 +180,8 @@
                 const n = itemCount + 1; // 从1开始计数
                 
                 // 计算位置：第一类物品图标的位置位于x=1600, y=192，第n类物品的图标位于x=1600, y=64+128*n
-                const itemX = 1600;
-                const itemY = 64 + 128 * n;
+                const itemX = n>8?1728:1600;
+                const itemY = n>8?64 + 128 * (n-8):64 + 128 * n;
                 
                 // 创建物品精灵，大小一律缩放为96*96
                 const item = this.add.sprite(itemX, itemY, itemType);
@@ -281,4 +281,5 @@
         } else {
             this.inventoryItems.setVisible(true);
         }
+
     }
