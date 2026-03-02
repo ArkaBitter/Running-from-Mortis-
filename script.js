@@ -4965,7 +4965,7 @@ class MainScene extends Phaser.Scene {
                 page2: [
                     { name: '抹茶巴菲', displayName: '抹茶巴菲', description: '乐奈最喜欢吃这个', x: -300, y: -150 },
                     { name: '迈巴赫钥匙', displayName: '迈巴赫钥匙', description: '祥子未成年没有驾照，因此只能用来打开迈巴赫的车门', x: 0, y: -150 },
-                    { name: '空啤酒罐', displayName: '空啤酒罐', description: '被某人喝光扔掉的啤酒罐', x: 300, y: -150 },
+                    { name: '空啤酒罐', displayName: '空啤酒罐', description: '被某人喝光扔掉的啤酒罐，上面有指纹', x: 300, y: -150 },
                     { name: '芭蕾舞鞋', displayName: '芭蕾舞鞋', description: '不能用来呼叫医生。持有它时睦不会被莫提斯干掉。', x: -300, y: 150 },
                     { name: 'Mygo联合演出邀请函', displayName: 'Mygo联合演出邀请函', description: '可以大幅提高Mygo角色出现的概率', x: 0, y: 150 },
                     { name: '神秘的玩偶', displayName: '神秘的玩偶', description: '可以用来干什么呢？搞不懂', x: 300, y: 150 }
