@@ -227,7 +227,7 @@
                 '可上下滚动',
                 {
                     fontSize: '20px',
-                    color: '#cccccc',
+                    color: '#000000ff',
                     fontFamily: 'Arial, sans-serif',
                     fontStyle: 'italic'
                 }
@@ -238,4 +238,5 @@
             // 确保提示文字可见
             this.scrollHintText.setVisible(true);
         }
+
     }
