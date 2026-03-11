@@ -182,6 +182,61 @@ class BootScene extends Phaser.Scene {
     }
 
     preload() {
+        // 创建加载背景
+        const background = this.add.rectangle(0, 0, this.game.config.width, this.game.config.height, 0x000000);
+        background.setOrigin(0, 0);
+        
+        // 创建加载文字
+        const loadingText = this.add.text(this.game.config.width / 2, this.game.config.height / 2 - 60, '加载中...', {
+            fontSize: '32px',
+            color: '#ffffff',
+            fontFamily: 'Arial, sans-serif',
+            align: 'center'
+        });
+        loadingText.setOrigin(0.5);
+        
+        // 创建进度条背景
+        const progressBarBackground = this.add.rectangle(
+            this.game.config.width / 2,
+            this.game.config.height / 2,
+            400,
+            30,
+            0x444444
+        );
+        progressBarBackground.setOrigin(0.5);
+        
+        // 创建进度条
+        const progressBar = this.add.rectangle(
+            this.game.config.width / 2 - 195,
+            this.game.config.height / 2,
+            10,
+            20,
+            0xffffff
+        );
+        progressBar.setOrigin(0, 0.5);
+        
+        // 创建百分比文字
+        const progressText = this.add.text(this.game.config.width / 2, this.game.config.height / 2 + 40, '0%', {
+            fontSize: '24px',
+            color: '#ffffff',
+            fontFamily: 'Arial, sans-serif',
+            align: 'center'
+        });
+        progressText.setOrigin(0.5);
+        
+        // 监听加载进度更新
+        this.load.on('progress', (value) => {
+            const width = value * 390;
+            progressBar.width = width;
+            progressText.setText(Math.floor(value * 100) + '%');
+            console.log('加载进度:', Math.floor(value * 100) + '%');
+        });
+        
+        // 监听加载完成
+        this.load.on('complete', () => {
+            console.log('所有资源加载完成');
+        });
+        
         // 加载占位图片
         // 角色
         this.load.image('丰川祥子Normal', './assets/角色/丰川祥子.webp');
@@ -423,7 +478,10 @@ class BootScene extends Phaser.Scene {
     }
 
     create() {
-        this.scene.start('MainScene');
+        // 延迟一下让用户看到100%的进度
+        this.time.delayedCall(500, () => {
+            this.scene.start('MainScene');
+        });
     }
 }
 
